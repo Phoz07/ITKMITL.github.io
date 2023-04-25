@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/ae17db096c.js" crossorigin="anonymous"></script>
+
+    <title>Magic zoo</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        header {
+            background: url(https://media.istockphoto.com/id/173681964/th/%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%96%E0%B9%88%E0%B8%B2%E0%B8%A2/%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C.jpg?s=612x612&w=0&k=20&c=WkbaOdRjrx1tD3AQuxLjsi3bjGtkp6WGiQLFBorHr_E=);
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            max-width: 1440px;
+            height: 1000px;
+            margin: 0 auto;
+        }
+        nav {
+            width: 1440px;
+            /* border: 1px solid red;  */
+            height: 120px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            overflow: hidden;
+        }
+        nav h1 {
+            font-size: 80px;
+            color: #fff;
+        }
+        .sidenav {
+        height: 100%; 
+        width: 0; 
+        position: fixed; 
+        z-index: 1; 
+        top: 0; 
+        left: 0;
+        background-color: #111; 
+        overflow-x: hidden; 
+        padding-top: 60px; 
+        transition: 0.5s; 
+        }
+
+        .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+        color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        }
+
+        #main {
+        transition: margin-left .5s;
+        padding: 20px;
+        }
+
+        .header-container {
+            height: 100;
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: center;
+            /* background-color: #000;
+            color: #fff;
+            margin: auto; */
+        }
+        .header-info {
+            padding: 50px;
+            border-radius: 20px;
+            margin-top: 200px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            height: 550px;
+        }
+        .header-info h1 {
+            font-size: 100px;
+        }
+        .header-info p {
+            margin: 20px;
+            font-size: 25px;
+            font-weight: 800;
+        }
+        /* header */
+
+        .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: 100px auto 0 auto;
+        }
+        .mySlides {
+        display: none;
+        }
+        .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        }
+        .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+        }
+        .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+        }
+        .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+        }
+        .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+        background-color: #717171;
+        }
+
+        .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+        }
+
+        footer {
+            margin: 75px 0 0 0;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .flip-box {
+        background-color: transparent;
+        width: 300px;
+        height: 200px;
+        border: 1px solid #f1f1f1;
+        perspective: 1000px;
+        }
+
+
+        .flip-box-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        }
+
+
+        .flip-box:hover .flip-box-inner {
+        transform: rotateY(180deg);
+        }
+
+
+        .flip-box-front, .flip-box-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        }
+
+
+        .flip-box-front {
+        background-color: #bbb;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+
+        .flip-box-back {
+        background-color: rgb(255, 0, 200);
+        color: white;
+        transform: rotateY(180deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 20px 0 0 0;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #111;
+        }
+
+    </style>
+    <!-- CSS -->
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <h1>MAGIC ZOO</h1>
+                <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#Gallery">Gallery</a>
+                    <a href="#Contact">Contact</a>
+                  </div>
+                  <div onclick="openNav()" style="cursor: pointer;"><i class="fa-solid fa-bars fa-xl"></i></div>
+            </nav>
+
+            <div class="header-container">
+                <div class="header-info">
+                    <h1>Welcome to the</h1>
+                    <h1>MAGIC ZOO!!</h1>
+                    <p>ในสวนสัตว์แห่งนี้เราจะได้พบกับสิ่งมีชีวิตสุดวิเศษ 5 ชนิด <br> และประสบการณ์สุดตื่นตาตื่นใจไปกับการชมบรรยากาศ <br> การใช้ชีวิตของสัตว์สุดวิเศษเหล่านี้</p>
+                </div>
+            </div>
+        </div>
+    </header>
+<!-- header -->
+
+    <div class="slideshow-container" id="Gallery">
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 5</div>
+                <img src="https://f.ptcdn.info/811/010/000/1381500750-beaver-o.jpg" style="width:100%">
+            <div class="text">Beaver</div>
+        </div>
+    
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 5</div>
+               <img src="data:image/jpeg;base64,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" style="width:100%">
+            <div class="text">Rabbit</div>
+        </div>
+    
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 5</div>
+                <img src="https://f.ptcdn.info/158/006/000/1371106024-biodiversi-o.gif" style="width:100%">
+            <div class="text">Ant</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 5</div>
+                <img src="https://cdn.pixabay.com/photo/2017/08/07/00/07/fox-2597803__480.jpg" style="width:100%">
+            <div class="text">Fox</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">5 / 5</div>
+                <img src="https://cdn.pixabay.com/photo/2020/07/01/17/34/wolf-5360340__340.jpg" style="width:100%">
+            <div class="text">Wolf</div>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+    
+    <footer id="Contact">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h1>Contact me</h1>
+                <ul>
+                    <li><a href="https://instagram.com/phos.07?igshid=YmMyMTA2M2Y="><i class="fa-brands fa-instagram fa-xl"></i></a></li>
+                    <li><a href="https://instagram.com/phos.07?igshid=YmMyMTA2M2Y="><i class="fa-brands fa-facebook fa-xl"></i></a></li>
+                </ul>
+            </div>
+            <a href=""></a>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                  <div class="flip-box-front">
+                    <h1>Hover here!</h1>
+                  </div>
+                  <div class="flip-box-back">
+                    <h1>ทำไมเธอน่ารักจังอ่ะไม่เข้าใจ</h1>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </footer>
+
+    <script>
+        function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        }
+        function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        }
+
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+    </script>
+    <!-- Javascript -->
+</body>
+</html>
